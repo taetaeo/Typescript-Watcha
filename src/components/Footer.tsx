@@ -84,7 +84,7 @@ const TermAndPolicy = styled.ul`
 
 const TermAndPolicyItem = styled.li`
   display: inline-block;
-  color: #a5a5a7;
+  color: #8e8eed;
   font-size: 15px;
   font-weight: 400;
   line-height: 22px;
