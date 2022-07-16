@@ -5,3 +5,7 @@
 ```shell
 npm i react-slick
 ```
+
+```shell
+npm i @types/react-slick -D
+```
