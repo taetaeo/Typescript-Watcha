@@ -4,7 +4,7 @@ export interface MovieImage {
   posters: Array<Image>;
 }
 
-interface Dates {
+export interface Dates {
   maximum: string;
   minimum: string;
 }
