@@ -1,7 +1,5 @@
-// import React from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import * as React from "react";
-
 import TvPageDetail from "./pages/tv/TvPageDetail";
 import MainPage from "./pages/main";
 import TvPage from "./pages/tv";
