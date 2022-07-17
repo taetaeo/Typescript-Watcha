@@ -64,8 +64,8 @@ interface Props {
   settings?: Settings;
 }
 
-const Slider: React.FC<Props> = ({ settings = DEFAULT_SETTINGS, children }) => {
-  return <ReactSlick {...settings}>{children}</ReactSlick>;
+const Slider: React.FC<Props> = ({ settings = DEFAULT_SETTINGS }) => {
+  return <ReactSlick {...settings}></ReactSlick>;
 };
 
 export default Slider;
