@@ -1,6 +1,7 @@
 import React from "react";
+import LatestMovieSection from "../../features/movie/latest";
 
 const MainPage: React.FC = () => {
-  return <div>MainPage입니다.</div>;
+  return <LatestMovieSection />;
 };
 export default MainPage;
