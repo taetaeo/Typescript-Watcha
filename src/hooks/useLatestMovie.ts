@@ -1,10 +1,13 @@
-import { AxiosError } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { useQuery } from "react-query";
-import axiosInstance from "../apis";
-import {} from "../apis/movieApi";
+import { latestApi } from "../apis/movieApi";
+import { MovieDetail } from "../types";
 
 const useLatestMovie = () => {
-  return useQuery<axiosResponse<MoviePageDetail>, AxiosError>("latestMovie");
+  return useQuery<AxiosResponse<MovieDetail>, AxiosError>(
+    "latestMovie",
+    latestApi
+  );
 };
 
 export default useLatestMovie;
