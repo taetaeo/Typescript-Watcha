@@ -3,7 +3,8 @@ import ReactSlider, { Settings } from "react-slick";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 interface Props {
   settings?: Settings;
 }
@@ -60,8 +61,10 @@ const DEFAULT_SETTINGS: Settings = {
   ),
 };
 
-const Slider: React.FC<Props> = ({ settings = DEFAULT_SETTINGS, children }) => (
-  <ReactSlider {...settings}>{children}</ReactSlider>
-);
-
+const Slider: React.FC<Props | any> = ({
+  settings = DEFAULT_SETTINGS,
+  children,
+}) => {
+  return <ReactSlider {...settings}>{children}</ReactSlider>;
+};
 export default Slider;
