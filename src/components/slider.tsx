@@ -1,5 +1,5 @@
 import React from "react";
-import ReactSlick, { Settings } from "react-slick";
+import ReactSlider, { Settings } from "react-slick";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import {
@@ -65,7 +65,7 @@ interface Props {
 }
 
 const Slider: React.FC<Props> = ({ settings = DEFAULT_SETTINGS }) => {
-  return <ReactSlick {...settings}></ReactSlick>;
+  return <ReactSlider {...settings}></ReactSlider>;
 };
 
 export default Slider;

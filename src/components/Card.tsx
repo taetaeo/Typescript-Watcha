@@ -48,27 +48,31 @@ const StyledLink = styled(Link)`
   display: block;
   margin-inline: 10px;
 `;
+
 const Base = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
+  width: 300px;
+  height: 100%;
 `;
 
 const ImageWrapper = styled.div`
   width: 100%;
   height: 300px;
 `;
+
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 4px;
 `;
+
 const Info = styled.div`
   text-align: left;
   width: 100%;
 `;
+
 const Title = styled.h4`
   color: #292a32;
   font-size: 16px;
@@ -86,7 +90,7 @@ const Keyword = styled.div`
   padding-bottom: 1px;
   font-size: 14px;
   font-weight: 400;
-  line-height: 22px;
+  line-height: 21px;
 `;
 
 const Average = styled.div`
