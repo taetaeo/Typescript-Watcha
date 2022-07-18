@@ -19,3 +19,20 @@ npm i react-query
 ```shell
 
 ```
+
+## 이슈
+
+### 1) slick 적용 오류
+
+```shell
+npm i slick-carousel
+```
+
+설치 후,
+
+```tsx
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+```
+
+- 위의 css를 import한다.
