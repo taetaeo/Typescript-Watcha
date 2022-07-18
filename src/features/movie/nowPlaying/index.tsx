@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import useNowPlayingMovie from "./useNowPlayingMovie";
 import Card from "../../../components/Card";
-import Slider from "react-slick";
+import Slider from "../../../components/";
 
 const NowPlayingSection: React.FC = () => {
   const { data, isLoading } = useNowPlayingMovie();
