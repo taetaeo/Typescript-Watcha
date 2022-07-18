@@ -4,23 +4,26 @@ import useLatestMovie from "./useLatestMovie";
 import Card from "../../../components/Card";
 
 const LatestMovieSection: React.FC = () => {
-  const { data, isLoading } = useLatestMovie();
+  const { data: latestMovieResponse, isLoading } = useLatestMovie();
 
   const getYear = (date: string) => date.split("-")[0];
 
   return (
     <Base>
       <Title>최근 개봉작</Title>
-      {isLoading || !data ? (
+      {isLoading ? (
         <div>Loading....</div>
       ) : (
-        <Card
-          linkUrl={`/movie/${data.data.id}`}
-          title={data.data.title}
-          posterPath={`${process.env.REACT_APP_IMAGE_PREFIX}/${data.data.poster_path}`}
-          voteAverage={data.data.vote_average}
-          year={getYear(data.data.release_date)}
-        />
+        latestMovieResponse?.data && (
+          <Card
+            key={latestMovieResponse?.data.id}
+            linkUrl={`/movie/${latestMovieResponse.data.id}`}
+            title={latestMovieResponse.data.title}
+            posterPath={`${process.env.REACT_APP_IMAGE_PREFIX}/${latestMovieResponse.data.poster_path}`}
+            voteAverage={latestMovieResponse.data.vote_average}
+            year={getYear(latestMovieResponse.data.release_date)}
+          />
+        )
       )}
     </Base>
   );
@@ -28,6 +31,13 @@ const LatestMovieSection: React.FC = () => {
 
 export default LatestMovieSection;
 
-const Base = styled.div``;
+const Base = styled.div`
+  margin-bottom: 42px;
+`;
 
-const Title = styled.h4``;
+const Title = styled.h4`
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 30px;
+  padding: 12px 0 14px;
+`;
