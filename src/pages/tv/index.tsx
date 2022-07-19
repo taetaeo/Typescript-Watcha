@@ -1,6 +1,11 @@
 import React from "react";
+import LatestMovieSection from "../../features/movie/latest";
 
 const TvPage: React.FC = () => {
-  return <div>TvPage입니다.</div>;
+  return (
+    <>
+      <LatestMovieSection />
+    </>
+  );
 };
 export default TvPage;
