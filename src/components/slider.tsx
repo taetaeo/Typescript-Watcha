@@ -2,18 +2,19 @@ import React from "react";
 import ReactSlider, { Settings } from "react-slick";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import {
-  MdArrowBack,
-  MdArrowBackIos,
-  MdArrowForward,
-  MdArrowForwardIos,
-} from "react-icons/md"; // 좌우 화살표
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+interface Props {
+  settings?: Settings;
+}
 
 const ArrowButton = styled.button<{ pos?: "left" | "right" }>`
-  padding: 10px;
-  box-sizing: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  padding: 16px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
   border-radius: 50%;
+  z-index: 1;
+  top: 50%;
   background-color: #fff;
   ${({ pos }) =>
     pos === "left"
@@ -24,8 +25,8 @@ const ArrowButton = styled.button<{ pos?: "left" | "right" }>`
       : css`
           right: 0;
           transform: translate(50%, -50%);
-        `}
-  &::before {
+        `};
+  &:before {
     content: initial;
   }
   > svg {
@@ -42,30 +43,28 @@ const ArrowButton = styled.button<{ pos?: "left" | "right" }>`
 const DEFAULT_SETTINGS: Settings = {
   dots: false, // 하단 인디케이터
   arrows: true, // 좌우 이동 화살표 표시
-  infinite: false, // 오토 플레이
+  infinite: true, // 오토 플레이
   speed: 500, // 오토 플레이 스피드
   slidesToShow: 5, // 슬라이드당 표시될 화면의 개수
   slidesToScroll: 5, // 스크롤 할 때 마다 표시되는 슬라이드 수
   swipe: true,
   draggable: true,
   prevArrow: (
-    <ArrowButton>
+    <ArrowButton pos="left">
       <MdArrowBackIos />
     </ArrowButton>
   ),
   nextArrow: (
-    <ArrowButton>
+    <ArrowButton pos="right">
       <MdArrowForwardIos />
     </ArrowButton>
   ),
 };
 
-interface Props {
-  settings?: Settings;
-}
-
-const Slider: React.FC<Props> = ({ settings = DEFAULT_SETTINGS }) => {
-  return <ReactSlider {...settings}></ReactSlider>;
+const Slider: React.FC<Props | any> = ({
+  settings = DEFAULT_SETTINGS,
+  children,
+}) => {
+  return <ReactSlider {...settings}>{children}</ReactSlider>;
 };
-
 export default Slider;

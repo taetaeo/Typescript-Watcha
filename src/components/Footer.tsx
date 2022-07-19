@@ -5,19 +5,21 @@ const Footer: React.FC = () => {
   return (
     <Base>
       <Section>
-        <Statics>
-          지금까지&nbsp;
-          <Emphasis>* 644,934,343개의 평가가 </Emphasis>
-          &nbsp;쌓였어요.
-        </Statics>
+        <Statistics>
+          <Summary>
+            지금까지&nbsp;
+            <Emphasis>★ 633,986,967 개의 평가가</Emphasis>
+            &nbsp;쌓였어요.
+          </Summary>
+        </Statistics>
         <Container>
           <ContentWrapper>
             <Left>
-              <TermAndPolicy>
-                <TermAndPolicyItem>서비스 이용약관</TermAndPolicyItem>
-                <TermAndPolicyItem>개인정보 처리방침</TermAndPolicyItem>
-                <TermAndPolicyItem>회사 정보</TermAndPolicyItem>
-              </TermAndPolicy>
+              <TermsAndPolicy>
+                <TermsAndPolicyItem>서비스 이용약관</TermsAndPolicyItem>
+                <TermsAndPolicyItem>개인정보 처리방침</TermsAndPolicyItem>
+                <TermsAndPolicyItem>회사 안내</TermsAndPolicyItem>
+              </TermsAndPolicy>
             </Left>
             <Right />
           </ContentWrapper>
@@ -38,8 +40,8 @@ const Section = styled.section`
   background-color: #1c1d1f;
 `;
 
-const Statics = styled.section`
-  background-color: #101113;
+const Statistics = styled.section`
+  background: #101113;
   width: 100%;
   height: 62px;
   line-height: 62px;
@@ -59,7 +61,8 @@ const Summary = styled.span`
 const Emphasis = styled.em`
   color: #ff0558;
   font-size: 19px;
-  font-weight: 22px;
+  font-weight: 500;
+  line-height: 22px;
 `;
 
 const Container = styled.section`
@@ -74,18 +77,12 @@ const ContentWrapper = styled.div`
 
 const Left = styled.div``;
 
-const Right = styled.div``;
+const TermsAndPolicy = styled.ul``;
 
-const TermAndPolicy = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
-const TermAndPolicyItem = styled.li`
+const TermsAndPolicyItem = styled.li`
   display: inline-block;
-  color: #8e8eed;
-  font-size: 15px;
+  color: #a5a5a7;
+  font-size: 13px;
   font-weight: 400;
   line-height: 22px;
   vertical-align: top;
@@ -102,3 +99,5 @@ const TermAndPolicyItem = styled.li`
     }
   }
 `;
+
+const Right = styled.div``;

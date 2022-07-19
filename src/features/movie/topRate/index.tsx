@@ -1,23 +1,22 @@
 import React from "react";
 import styled from "@emotion/styled";
-
 import Card from "../../../components/Card";
 import Slider from "../../../components/Slider";
-import useNowPlayingMovie from "./useNowPlayingMovie";
+import useTopRateMovie from "./usePopularMovie";
 
-const NowPlayingSection: React.FC = () => {
-  const { data: nowPlayingMovieResponse, isLoading } = useNowPlayingMovie();
+const TopRateSection: React.FC = () => {
+  const { data: topRateMovieResponse, isLoading } = useTopRateMovie();
 
   const getYear = (date: string) => date.split("-")[0];
 
   return (
     <Base>
-      <Title>현재 상영중</Title>
+      <Title>최고 명작</Title>
       {isLoading ? (
         <div>Loading....</div>
       ) : (
         <Slider>
-          {nowPlayingMovieResponse?.data.results.map((movie) => (
+          {topRateMovieResponse?.data.results.map((movie) => (
             <Card
               key={movie.id}
               linkUrl={`/movie/${movie.id}`}
@@ -33,7 +32,7 @@ const NowPlayingSection: React.FC = () => {
   );
 };
 
-export default NowPlayingSection;
+export default TopRateSection;
 
 const Base = styled.div`
   margin-bottom: 42px;

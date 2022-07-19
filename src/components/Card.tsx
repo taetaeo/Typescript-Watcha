@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { AiFillAlert } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 
 interface Props {
   linkUrl: string;
@@ -10,6 +10,7 @@ interface Props {
   posterPath: string;
   voteAverage: number;
 }
+
 const Card: React.FC<Props> = ({
   linkUrl,
   title,
@@ -18,26 +19,25 @@ const Card: React.FC<Props> = ({
   year,
 }) => {
   return (
-    <>
-      <StyledLink to={linkUrl}>
-        <Base>
-          <ImageWrapper>
-            <Image src={posterPath} alt={`${title}의 포스터`} />
-          </ImageWrapper>
-          <Info>
-            <Title>{title}</Title>
-            <Keyword>{year}</Keyword>
-            <Average>
-              <span>평균</span>
-              <span>
-                &npsp; <AiFillAlert />
-              </span>
-              <span>{voteAverage}</span>
-            </Average>
-          </Info>
-        </Base>
-      </StyledLink>
-    </>
+    <StyledLink to={linkUrl}>
+      <Base>
+        <ImageWrapper>
+          <Image src={posterPath} alt={`${title} 의 포스터`} />
+        </ImageWrapper>
+        <Info>
+          <Title>{title}</Title>
+          <Keyword>{year}</Keyword>
+          <Average>
+            <span>평균</span>
+            <span>
+              &nbsp;
+              <AiFillStar />
+            </span>
+            <span>{voteAverage}</span>
+          </Average>
+        </Info>
+      </Base>
+    </StyledLink>
   );
 };
 
@@ -52,7 +52,7 @@ const StyledLink = styled(Link)`
 const Base = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 100%;
   height: 100%;
 `;
 
