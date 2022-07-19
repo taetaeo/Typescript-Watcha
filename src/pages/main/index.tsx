@@ -2,6 +2,9 @@ import React from "react";
 import LatestMovieSection from "../../features/movie/latest";
 import NowPlayingSection from "../../features/movie/nowPlaying";
 import styled from "@emotion/styled";
+import PopularSection from "../../features/movie/popular";
+import TopRateSection from "../../features/movie/topRate";
+import UpComingSection from "../../features/movie/upComing";
 
 const MainPage: React.FC = () => {
   return (
@@ -10,6 +13,9 @@ const MainPage: React.FC = () => {
         <Container>
           <LatestMovieSection />
           <NowPlayingSection />
+          <PopularSection />
+          <TopRateSection />
+          <UpComingSection />
         </Container>
       </Main>
     </>
