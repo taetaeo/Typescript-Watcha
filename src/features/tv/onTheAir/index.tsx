@@ -12,7 +12,7 @@ const OnTheAirSection: React.FC = () => {
 
   return (
     <Base>
-      <Title>Airing Today</Title>
+      <Title>실시간</Title>
       {isLoading || !OnTheAirTvResponse ? (
         <div>Loading....</div>
       ) : (
