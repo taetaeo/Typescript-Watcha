@@ -2,9 +2,18 @@ import * as React from "react";
 import styled from "@emotion/styled";
 
 import { AiOutlineSearch } from "react-icons/ai";
+import useMovieSearch from "../features/movie/useMovieSearch";
 
 const Header: React.FC = () => {
-  const handleKeyword = () => {};
+  const [searchKeyword, setSearchKeyword] = React.useState<string>("");
+  const pathname = window.location.pathname;
+  // const isTv = pathname.indexOf("tv") > -1; // 1 > -1
+
+  const { data: searchResult, isLoading } = useMovieSearch(searchKeyword);
+
+  const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setSearchKeyword(e.target.value);
+  };
 
   return (
     <Base>
@@ -41,6 +50,17 @@ const Header: React.FC = () => {
                   </SearchForm>
                 </SearchFormWrapper>
               </SearchContainer>
+              <SearchResultWrapper>
+                <SearchResultList>
+                  {searchResult?.results.map((searchItem) => (
+                    <Link key={searchItem.id} href={`/movie/${searchItem.id}`}>
+                      <SearchResultListItem>
+                        {searchItem.title}
+                      </SearchResultListItem>
+                    </Link>
+                  ))}
+                </SearchResultList>
+              </SearchResultWrapper>
             </SearchMenu>
             <Menu>
               <SignIn>로그인</SignIn>
@@ -58,14 +78,16 @@ const Header: React.FC = () => {
 export default Header;
 
 const Base = styled.header`
+  width: 100%;
+  margin: 0 auto;
+  height: 62px;
   position: sticky;
   top: 0;
   left: 0;
-  background: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   text-align: center;
-  box-shadow: rgb(0 0 0 / 0%) 0px 1px 0px 0px;
-  width: 100%;
-  height: 62px;
+  box-shadow: rgb(0 0 0 / 8%) 0px 1px 0px 0px;
+  transition: background-color 200ms ease 0s;
   z-index: 10;
 `;
 
@@ -81,7 +103,6 @@ const MenuList = styled.ul`
   padding: 0;
   margin: 0;
   display: flex;
-  overflow: hidden;
 `;
 
 const Menu = styled.li`
@@ -89,14 +110,14 @@ const Menu = styled.li`
   align-items: center;
   height: 62px;
   flex-shrink: 0;
-  &:not(:first-of-type) {
-    margin-left: 24px;
+  &:not(:first-child) {
+    margin: 0 0 0 24px;
   }
 `;
 
 const MenuButton = styled.button<{ active?: boolean }>`
   font-size: 15px;
-  color: ${({ active }) => (active ? "rgb(53,53,53)" : "rgba(126,126,126)")};
+  color: ${({ active }) => (active ? "rgb(53, 53, 53)" : "rgb(126, 126, 126)")};
   cursor: pointer;
   border: none;
   background: none;
@@ -109,6 +130,7 @@ const SearchMenu = styled.li`
   height: 62px;
   flex-shrink: 1;
   margin: 0 0 0 auto;
+  transition: all 0.5s ease 0s;
   position: relative;
 `;
 
@@ -132,9 +154,46 @@ const SearchContainer = styled.div`
   width: 100%;
 `;
 
+const SearchResultWrapper = styled.div`
+  position: absolute;
+  top: 60px;
+  left: 0;
+  z-index: 9999999;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  max-height: 480px;
+  overflow-y: scroll;
+`;
+
+const SearchResultListItem = styled.li`
+  padding: 4px 6px;
+  box-sizing: border-box;
+  color: #222;
+  font-size: 16px;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  &:hover {
+    background-color: #eee;
+  }
+`;
+
+const SearchResultList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
 const SearchFormWrapper = styled.div``;
 
-const SearchForm = styled.div``;
+const SearchForm = styled.form``;
 
 const SearchLabel = styled.label`
   background: rgb(245, 245, 247);
