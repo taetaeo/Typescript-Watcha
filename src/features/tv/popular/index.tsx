@@ -3,21 +3,21 @@ import React from "react";
 
 import Card from "../../../components/Card";
 import Slider from "../../../components/Slider";
-import useOnTheAirTv from "./useOnTheAirTv";
+import usePopularTv from "./useOnTheAirTv";
 
-const OnTheAirSection: React.FC = () => {
-  const { data: OnTheAirTvResponse, isLoading } = useOnTheAirTv();
+const PopularSection: React.FC = () => {
+  const { data: PopularTvResponse, isLoading } = usePopularTv();
 
   const getYear = (date: string) => date.split("-")[0];
 
   return (
     <Base>
-      <Title>실시간</Title>
-      {isLoading || !OnTheAirTvResponse ? (
+      <Title>인기 상영작</Title>
+      {isLoading || !PopularTvResponse ? (
         <div>Loading....</div>
       ) : (
         <Slider>
-          {OnTheAirTvResponse?.data?.results.map((tv) => (
+          {PopularTvResponse?.data?.results.map((tv) => (
             <Card
               key={tv.id}
               linkUrl={`/tv/${tv.id}`}
@@ -33,7 +33,7 @@ const OnTheAirSection: React.FC = () => {
   );
 };
 
-export default OnTheAirSection;
+export default PopularSection;
 
 const Base = styled.div`
   margin-bottom: 62px;
