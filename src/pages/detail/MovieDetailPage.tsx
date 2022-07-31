@@ -1,53 +1,103 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "@emotion/styled";
+import { useParams } from "react-router-dom";
+import { Rating } from "@mui/material";
+import useMovieDetail from "../../features/movie/useMovieDetail";
+import { AiOutlinePlayCircle, AiFillEye, AiOutlinePlus } from "react-icons/ai";
+import { FaPen } from "react-icons/fa";
+import { FiMoreHorizontal } from "react-icons/fi";
+
+type Params = {
+  id: string | any;
+};
 
 const MovieDetailPage: React.FC = () => {
+  const { id } = useParams<Params>();
+  const { isLoading, data } = useMovieDetail(id);
+
+  const year = useMemo(() => {
+    return data?.data.release_date?.split("-")[0] || "";
+  }, [data]);
+
+  const genres = useMemo(() => {
+    return data?.data.genres?.map((genre) => genre.name).join("/");
+  }, [data]);
   return (
     <Base>
-      <TopInfo>
-        <PosterContainer>
-          <Backdrop>
-            <LeftBlur />
-            <BackdropImage imageUrl={""}>
-              <LeftGradient />
-              <RightGradient />
-            </BackdropImage>
-            <RightBlur />
-          </Backdrop>
-        </PosterContainer>
-        <Main>
-          <Container>
-            <PosterWrapper>
-              <Poster />
-            </PosterWrapper>
-            <ContentWrapper>
-              <Title></Title>
-              <Keyword></Keyword>
-              <AverageRate></AverageRate>
-              <Actions>
-                <StarRate>
-                  <StarRateText></StarRateText>
-                  <RatingWrapper></RatingWrapper>
-                </StarRate>
-                <Divider />
-                <ActionButtonContainer>
-                  <ActionButton>보고싶어요</ActionButton>
-                  <ActionButton>코멘트</ActionButton>
-                  <ActionButton>보는중</ActionButton>
-                  <ActionButton>더보기</ActionButton>
-                </ActionButtonContainer>
-              </Actions>
-            </ContentWrapper>
-          </Container>
-        </Main>
-      </TopInfo>
+      <>
+        {isLoading || !data ? (
+          <div>Loading....</div>
+        ) : (
+          <>
+            <TopInfo>
+              <PosterContainer>
+                <Backdrop>
+                  <LeftBlur />
+                  <BackdropImage
+                    imageUrl={`${process.env.REACT_APP_IMAGE_PREFIX}/${data.data.backdrop_path}`}
+                  >
+                    <LeftGradient />
+                    <RightGradient />
+                  </BackdropImage>
+                  <RightBlur />
+                </Backdrop>
+              </PosterContainer>
+              <Main>
+                <Container>
+                  <PosterWrapper>
+                    <Poster
+                      src={`${process.env.REACT_APP_IMAGE_PREFIX}/${data.data.poster_path}`}
+                    />
+                  </PosterWrapper>
+                  <ContentWrapper>
+                    <Title>{data.data.title}</Title>
+                    <Keyword>
+                      {year}·{genres}
+                    </Keyword>
+                    <AverageRate>
+                      평균 * {data.data.vote_average} * {data.data.vote_count}명
+                    </AverageRate>
+                    <Actions>
+                      <StarRate>
+                        <StarRateText>평가하기</StarRateText>
+                        <RatingWrapper>
+                          <Rating></Rating>
+                        </RatingWrapper>
+                      </StarRate>
+                      <Divider />
+                      <ActionButtonContainer>
+                        <ActionButton>
+                          <AiOutlinePlus />
+                          보고싶어요
+                        </ActionButton>
+                        <ActionButton>
+                          <FaPen />
+                          코멘트
+                        </ActionButton>
+                        <ActionButton>
+                          <AiFillEye />
+                          보는중
+                        </ActionButton>
+                        <ActionButton>
+                          <FiMoreHorizontal />
+                          더보기
+                        </ActionButton>
+                      </ActionButtonContainer>
+                    </Actions>
+                  </ContentWrapper>
+                </Container>
+              </Main>
+            </TopInfo>
 
-      <BottomInfo>
-        <ContentSectionContainer>
-          {/* <DefulatInfo/>
+            <BottomInfo>
+              <ContentSectionContainer>
+                {/* <DefulatInfo/>
           <Similar/> */}
-        </ContentSectionContainer>
-      </BottomInfo>
+              </ContentSectionContainer>
+            </BottomInfo>
+          </>
+        )}
+      </>
     </Base>
   );
 };

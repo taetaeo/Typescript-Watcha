@@ -20,6 +20,12 @@ npm i react-query
 
 ```
 
+### mui
+
+```shell
+npm i @mui/material
+```
+
 ## 이슈
 
 ### 1) slick 적용 오류

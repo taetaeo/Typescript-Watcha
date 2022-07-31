@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import TvPageDetail from "./pages/tv/TvPageDetail";
 import MainPage from "./pages/main";
 import TvPage from "./pages/tv";
-import MoviePageDetail from "./pages/main/MoviePageDetail";
+import MoviePageDetail from "./pages/detail/MovieDetailPage";
 
 export default function Router() {
   return (
