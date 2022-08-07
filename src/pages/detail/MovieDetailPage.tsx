@@ -6,6 +6,8 @@ import useMovieDetail from "../../features/movie/useMovieDetail";
 import { AiOutlinePlayCircle, AiFillEye, AiOutlinePlus } from "react-icons/ai";
 import { FaPen } from "react-icons/fa";
 import { FiMoreHorizontal } from "react-icons/fi";
+import Similar from "../../features/movie/detail/Similar";
+import DefaultInfo from "../../features/movie/detail/DefaultInfo";
 
 type Params = {
   id: string | any;
@@ -91,8 +93,14 @@ const MovieDetailPage: React.FC = () => {
 
             <BottomInfo>
               <ContentSectionContainer>
-                {/* <DefulatInfo/>
-          <Similar/> */}
+                <DefaultInfo
+                  title={data.data.title}
+                  year={year}
+                  genres={genres}
+                  runtime={data.data.runtime}
+                  overview={data.data.overview}
+                />
+                <Similar id={id} />
               </ContentSectionContainer>
             </BottomInfo>
           </>
