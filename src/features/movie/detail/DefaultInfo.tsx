@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 interface Props {
   title: string;
   year: string;
-  genres: string;
+  genres?: string;
   runtime: number;
   overview: string;
 }

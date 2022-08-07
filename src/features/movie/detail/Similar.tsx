@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "@emotion/styled";
 import useSimilarMovie from "../useSimilarMovie";
+import SimilarMovie from "./SimilarMovie";
 
 interface Props {
   id: string;
 }
 
-const Similar = ({ id }: Props) => {
+const Similar = ({ ...props }: Props) => {
+  const { id } = props;
   const { isLoading, data } = useSimilarMovie(id);
 
   return (
