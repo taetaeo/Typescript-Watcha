@@ -38,12 +38,32 @@ const Similar = ({ ...props }: Props) => {
 
 export default Similar;
 
-const Base = styled.section``;
+const Base = styled.section`
+  padding: 11px 15px;
+  border-bottom: 1px solid #ededed;
+`;
 
 const HeaderWrapper = styled.div``;
 
-const Header = styled.header``;
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-const Title = styled.h2``;
+const ContentsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 15px;
+  row-gap: 24px;
+`;
 
-const ContentsWrapper = styled.div``;
+const Title = styled.div`
+  color: rgb(41, 42, 50);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
