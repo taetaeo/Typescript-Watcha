@@ -1,7 +1,8 @@
 import React from "react";
+import styled from "@emotion/styled";
+
 import LatestMovieSection from "../../features/movie/latest";
 import NowPlayingSection from "../../features/movie/nowPlaying";
-import styled from "@emotion/styled";
 import PopularSection from "../../features/movie/popular";
 import TopRateSection from "../../features/movie/topRate";
 import UpComingSection from "../../features/movie/upComing";
